@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet 
+  href="chrome://stanford-pwdhash/content/stanford-pwdhash-overlay.css"
+  type="text/css"?>   
+
+<overlay id="stanford-pwdhash-overlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
+<window id="main-window">
+
+  <stringbundleset id="sphStringBundleSet">
+    <stringbundle id="stanford-pwdhash-strings" src="chrome://stanford-pwdhash/locale/stanford-pwdhash.properties" />
+  </stringbundleset>
+
+</window>
+
+<!--  In theory, we could have some user interface elements like menu items...
+<menupopup id="menu_ToolsPopup">
+    <menuitem id="stanford-pwdhash-menu"
+    label="PwdHash"
+    accesskey="P"
+    oncommand=""
+    class="menuitem-iconic"/>
+</menupopup>
+-->
+
+<script src="chrome://stanford-pwdhash/content/stanford-pwdhash.js" />
+<script src="chrome://stanford-pwdhash/content/hashed-password.js" />
+<script src="chrome://stanford-pwdhash/content/domain-extractor.js" />
+<script src="chrome://stanford-pwdhash/content/md5.js" />
+
+</overlay>
+

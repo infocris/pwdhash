@@ -1,0 +1,67 @@
+<html>
+<body>
+
+<style type="text/css">
+.FR {
+	float:right;
+}
+.FL {
+	float:left;
+}
+.labelTextInput {
+	display:block;
+	font-size:8pt;
+}
+h1, h1 span {
+	font-size:10pt;
+	font-weight:bold;
+}
+#validation_msg {
+	font-style:italic;
+}
+p, span, body {
+	font-family: Verdana, Arial;
+	font-size:10pt;
+}
+label {
+	cursor:pointer;
+}
+</style>
+
+<script type="text/javascript" src="jquery.js"></script>
+
+<div id="pwdhashEnabled">
+	<h1>
+		<img src="images/icon16.png"/>
+		<span>Settings for</span>
+		<span id="domainTitle"></span>
+	</h1>
+	<form id="pwdhash_menu" style="width:250px;">
+	<p><label for="domain" class="labelTextInput">Use an alternative domain</label>
+		<input type="text" id="domain" value="" /></p>
+	
+	Press [Enter] to validate.
+	<!--
+	<p><input type="checkbox" id="alertPwd" />
+		<label for="alertPwd">Prompt password and hash</label></p>
+	<p><input type="checkbox" id="noIntercept" />
+		<label for="noIntercept">Disable interception security</label></p>
+	<input type="button" value="Options" onclick="chrome.tabs.create({url: 'options.html'});" />
+	
+	<a href="javascript:chrome.tabs.create({url: 'options.html'});">Options</a>
+	<center style="display:none">
+		<p id="validation_msg"/></p>
+		<input type="button" id="validate" value="Save changes" />
+	</center>
+	-->
+	</form>
+</div>
+
+<div id="pwdhashDisabled" style="width:200px">
+	PwdHash is not active.
+</div>
+
+<script type="text/javascript" src="popup.js"></script>
+
+</body>
+</html>

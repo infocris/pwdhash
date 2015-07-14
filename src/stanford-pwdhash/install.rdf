@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+  <RDF:Description about="urn:mozilla:install-manifest">
+
+  <em:id>{bb8d77b0-a845-4249-a205-ef7395587b69}</em:id>
+  <em:version>1.7</em:version>
+  <em:targetApplication>
+    <RDF:Description>
+      <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+      <em:minVersion>1.0</em:minVersion>
+      <em:maxVersion>3.5.*</em:maxVersion>
+    </RDF:Description>
+  </em:targetApplication>
+
+  <em:name>PwdHash</em:name>
+
+  <em:description>Automatically generates per-site passwords if you prefix your password with @@ or F2.</em:description>
+
+  <em:creator>Stanford University</em:creator>
+
+  <em:homepageURL>http://crypto.stanford.edu/PwdHash</em:homepageURL>
+
+  </RDF:Description>
+</RDF:RDF>
+

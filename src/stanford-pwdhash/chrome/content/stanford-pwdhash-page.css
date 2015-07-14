@@ -1,0 +1,30 @@
+/*
+ * This content stylesheet can make PwdHash's effects more obvious.
+ * It's unclear whether having PwdHash be obvious is a good thing or a bad thing.
+ */
+
+input[type="password"]
+{
+  /* background-image: url('chrome://browser/skin/Security-broken.png'); 
+  background-repeat: no-repeat;
+  background-position: top right; */
+
+  /* CSS3 property not currently supported */
+  /*  background-size: 100%; */   
+}
+
+input[type="password"][secure="yes"]
+{
+  /* background-image: url('chrome://browser/skin/Secure.png'); */
+
+  /* The oh-so-convenient "click to clear" behavior */
+  -moz-binding: url("chrome://stanford-pwdhash/content/stanford-pwdhash-page.xml#securepwd");
+
+  /* same as browser/themes/winstripe/browser/browser.css */
+  /* background-color: #F5F6BE; */
+ }
+
+input[type="password"][secure="yes"]:focus
+{
+  /* background-color: #FFFFFF; */
+}

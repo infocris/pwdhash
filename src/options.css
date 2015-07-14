@@ -1,0 +1,11 @@
+
+.FR {
+	float:right;
+}
+.FL {
+	float:left;
+}
+p, span, body {
+	font-family: Verdana, Arial;
+	font-size:10pt;
+}
