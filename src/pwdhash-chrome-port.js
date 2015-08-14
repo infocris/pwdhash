@@ -258,6 +258,7 @@ var PasswordInputListener = (function () {
 			for (var k in this.items) {
 				new Self(this.items[k]);
 			}
+			return this.items.length != 0;
 		},
 		searchFields: function (event) {
 			var result = xPathExpression.evaluate(event.target, 0, null);
@@ -321,8 +322,9 @@ var PasswordInputListener = (function () {
 	});
 	
 	var discoverPasswordFields = function(event) {
- 		Self.searchInputs(event);
- 		if (Self.existsInputs()) {
+// 		Self.searchInputs(event);
+// 		if (Self.existsInputs(event)) {
+ 		if (Self.searchInputs(event)) {
  			chrome.extension.sendRequest({controller: 'Background_HTML', action: 'showPwdHashIcon'});
  		}
 	};
