@@ -8,7 +8,7 @@ if (settings.retrieve('hideIcon')) {
 
 var iconActionType = 'pageAction';
 
-chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 	if (request.controller != 'Background_HTML') return;
 	try {
 		if (request.action == "setPwdHashIconOn") {
