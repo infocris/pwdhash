@@ -321,12 +321,17 @@ var PasswordInputListener = (function () {
 		}
 	});
 	
+	var searchInProgress = null;
 	var discoverPasswordFields = function(event) {
-// 		Self.searchInputs(event);
-// 		if (Self.existsInputs(event)) {
- 		if (Self.searchInputs(event)) {
- 			chrome.extension.sendRequest({controller: 'Background_HTML', action: 'showPwdHashIcon'});
- 		}
+		if (searchInProgress) {
+			clearTimeout(searchInProgress);
+		}
+		searchInProgress = setTimeout(function() {
+			searchInProgress = null;
+			if (Self.searchInputs(event)) {
+				chrome.extension.sendRequest({controller: 'Background_HTML', action: 'showPwdHashIcon'});
+			}
+		}, 1000);
 	};
 	
 	window.addEventListener('load', discoverPasswordFields);
