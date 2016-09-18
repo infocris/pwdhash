@@ -193,13 +193,13 @@ var PasswordInputListener = (function () {
 					dconsole.log('PwdHash turn on');
 					field.style.backgroundColor = '#ff0';
 					this.keyhooker.intercept();
-					chrome.extension.sendRequest({controller: 'Background_HTML', action: 'setPwdHashIconOn'});
+					chrome.runtime.sendMessage({controller: 'Background_HTML', action: 'setPwdHashIconOn'});
 					
 				} else {
 					dconsole.log('PwdHash turn off');
 					field.style.backgroundColor = '#fff';
 					this.keyhooker.unIntercept();
-					chrome.extension.sendRequest({controller: 'Background_HTML', action: 'setPwdHashIconOff'});
+					chrome.runtime.sendMessage({controller: 'Background_HTML', action: 'setPwdHashIconOff'});
 				}
 			},
 			
@@ -312,12 +312,12 @@ var PasswordInputListener = (function () {
 		}
 	});
 	
-	chrome.extension.sendRequest({controller: 'Background_HTML', action: 'setPwdHashIconOff'});
+	chrome.runtime.sendMessage({controller: 'Background_HTML', action: 'setPwdHashIconOff'});
 	window.addEventListener('focus', function() {
 		if (registered.length != 0 && registered[0].isEnabled()) {
-			chrome.extension.sendRequest({controller: 'Background_HTML', action: 'setPwdHashIconOn'});
+			chrome.runtime.sendMessage({controller: 'Background_HTML', action: 'setPwdHashIconOn'});
 		} else {
-			chrome.extension.sendRequest({controller: 'Background_HTML', action: 'setPwdHashIconOff'});
+			chrome.runtime.sendMessage({controller: 'Background_HTML', action: 'setPwdHashIconOff'});
 		}
 	});
 	
@@ -325,7 +325,7 @@ var PasswordInputListener = (function () {
 // 		Self.searchInputs(event);
 // 		if (Self.existsInputs(event)) {
  		if (Self.searchInputs(event)) {
- 			chrome.extension.sendRequest({controller: 'Background_HTML', action: 'showPwdHashIcon'});
+ 			chrome.runtime.sendMessage({controller: 'Background_HTML', action: 'showPwdHashIcon'});
  		}
 	};
 	

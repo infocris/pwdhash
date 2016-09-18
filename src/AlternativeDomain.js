@@ -70,7 +70,7 @@ var AlternativeDomain = (function () {
 			return domain;
 		};
 		
-		chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+		chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 			if (request.controller != 'AlternativeDomain') return;
 			
 			try {
