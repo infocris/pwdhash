@@ -159,10 +159,20 @@ var ComplexKeyHooker = (function () {
 		// DOM 3 keyboard event doc : http://dev.w3.org/2006/webapi/DOM-Level-3-Events/html/DOM3-Events.html#events-Events-KeyboardEvent-initKeyboardEvent
 		// Solution found : http://stackoverflow.com/questions/345454/how-can-i-generate-a-keypress-event-in-safari-with-javascript
 		
-		var eventObject = document.createEvent('TextEvent');
-		eventObject.initTextEvent('textInput', true, true, null, str);
-		eventObject.generatedByKeyHooker = true;
-		target.dispatchEvent(eventObject);
+		var value = target.value;
+		var err, eventObject;
+		try {
+			eventObject = document.createEvent('TextEvent');
+			eventObject.initTextEvent('textInput', true, true, null, str);
+			eventObject.generatedByKeyHooker = true;
+			target.dispatchEvent(eventObject);
+		} catch (err) {
+		}
+		
+		// fallback method if all above failed
+		if (value == target.value) {
+			target.value += str;
+		}
 	};
 
 	return Self;
