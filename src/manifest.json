@@ -1,6 +1,6 @@
 {
   "name": "My hash password lite",
-  "version": "1.0.0.1",
+  "version": "1.0.0.2",
   "manifest_version": 2,
   "description": "Pwdhash 1.7 for Chrome. More privacy. Automatically generates per-site passwords if you prefix your password with @@ or F2.",
   "content_scripts": [
