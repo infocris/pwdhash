@@ -6,9 +6,7 @@ var $P = function (id) {
 		this.click = function (fn) { e.addEventListener('click', fn); return o; };
 		this.blur = function (fn) { e.addEventListener('blur', fn); return o; };
 		this.keyup = function (fn) { e.addEventListener('keyup', fn); return o; };
-		this.html = function (a1) {
-			e.innerHTML = a1;
-		}
+
 		this.val = function (a1) {
 			if (a1 == undefined) {
 				if (e.type == 'checkbox')
