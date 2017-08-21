@@ -13,12 +13,10 @@ var testPassword = document.getElementById('testPassword');
 var log = document.getElementById('log');
 var log2 = document.getElementById('log2');
 var appendLog = function (line) {
-	log.innerHTML += line + '<br/>';
 	if (console) console.log('[test_hooker.html] INPUT ' + line);
 	log.scrollTop = log.scrollHeight;
 }
 var appendLog2 = function (line) {
-	log2.innerHTML += line + '<br/>';
 	if (console) console.log('[test_hooker.html] WINDOW ' + line);
 	log2.scrollTop = log2.scrollHeight;
 }

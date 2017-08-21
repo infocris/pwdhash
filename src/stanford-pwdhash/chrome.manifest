@@ -1,3 +1,0 @@
-content  stanford-pwdhash chrome/content/
-locale	stanford-pwdhash	en-US	chrome/locale/en-US/
-overlay chrome://browser/content/browser.xul chrome://stanford-pwdhash/content/stanford-pwdhash-overlay.xul

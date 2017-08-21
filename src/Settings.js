@@ -41,7 +41,7 @@ var Settings = (function () {
 		var self = this;
 		
 		this.listen = function (channel) {
-			chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+			chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 				if (request.controller != channel) return;
 				
 				try {
@@ -62,7 +62,7 @@ var Settings = (function () {
 	
 	Self.Remote = function (channel) {
 		this.retrieve = function (k, fn) {
-			chrome.extension.sendRequest({
+			chrome.runtime.sendMessage({
 				controller: channel,
 				action: 'retrieve',
 				key: k
@@ -71,7 +71,7 @@ var Settings = (function () {
 			});
 		}
 		this.store = function (k, val, fn) {
-			chrome.extension.sendRequest({
+			chrome.runtime.sendMessage({
 				controller: channel,
 				action: 'store',
 				key: k,

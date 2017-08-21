@@ -12,14 +12,14 @@ var $P = function (id) {
 		this.val = function (a1) {
 			if (a1 == undefined) {
 				if (e.type == 'checkbox')
-					return e.checked; 
-					else return e.value; 
+					return e.checked;
+					else return e.value;
 			}
 			if (e.type == 'checkbox') {
 				e.checked = a1;
 			}
 				else e.value = a1;
-			
+
 			return o;
 		};
 	})(document.getElementById(id));
@@ -42,7 +42,6 @@ sendRequest({controller: 'AlternativeDomain', action: "getDomain"}, function(res
 	$('#domain').val(response.domain);
 	old_domain = response.domain;
 	default_domain = response.defaultDomain;
-	$('#domainTitle').html(default_domain);
 	$('#pwdhashEnabled').show();
 	$('#pwdhashDisabled').hide();
 });
