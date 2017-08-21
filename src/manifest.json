@@ -1,8 +1,8 @@
 {
-  "name": "PwdHash port beta",
-  "version": "0.4.3.6",
+  "name": "PwdHash",
+  "version": "0.4.3.8",
   "manifest_version": 2,
-  "description": "Pwdhash 1.7 for Chrome. Automatically generates per-site passwords if you prefix your password with @@ or F2.",
+  "description": "Pwdhash 0.8. Automatically generates per-site passwords if you prefix your password with @@",
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
@@ -15,7 +15,7 @@
         "stanford-pwdhash/chrome/content/stanford-pwdhash.js",
         "null.js",
         "AlternativeDomain.js",
-        "jquery.js",
+        "jquery-3.2.1.min.js",
         "KeyHooker.js",
         "Settings.js",
         "pwdhash-chrome-port.js"

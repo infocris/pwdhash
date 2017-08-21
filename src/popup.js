@@ -6,20 +6,18 @@ var $P = function (id) {
 		this.click = function (fn) { e.addEventListener('click', fn); return o; };
 		this.blur = function (fn) { e.addEventListener('blur', fn); return o; };
 		this.keyup = function (fn) { e.addEventListener('keyup', fn); return o; };
-		this.html = function (a1) {
-			e.innerHTML = a1;
-		}
+
 		this.val = function (a1) {
 			if (a1 == undefined) {
 				if (e.type == 'checkbox')
-					return e.checked; 
-					else return e.value; 
+					return e.checked;
+					else return e.value;
 			}
 			if (e.type == 'checkbox') {
 				e.checked = a1;
 			}
 				else e.value = a1;
-			
+
 			return o;
 		};
 	})(document.getElementById(id));
@@ -42,7 +40,6 @@ sendRequest({controller: 'AlternativeDomain', action: "getDomain"}, function(res
 	$('#domain').val(response.domain);
 	old_domain = response.domain;
 	default_domain = response.defaultDomain;
-	$('#domainTitle').html(default_domain);
 	$('#pwdhashEnabled').show();
 	$('#pwdhashDisabled').hide();
 });
