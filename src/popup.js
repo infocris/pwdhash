@@ -28,8 +28,8 @@ $('#pwdhashEnabled').hide();
 $('#pwdhashDisabled').show();
 
 var sendRequest = function (params, callback) {
-	chrome.tabs.getSelected(null, function(tab) {
-		chrome.tabs.sendRequest(tab.id, params, callback);
+	browser.tabs.query(null, function(tab) {
+		browser.runtime.sendMessage(tab.id, params, callback);
 	});
 };
 
