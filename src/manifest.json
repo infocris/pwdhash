@@ -1,6 +1,6 @@
 {
   "name": "PwdHash",
-  "version": "0.4.3.8",
+  "version": "0.4.3.9",
   "manifest_version": 2,
   "description": "Pwdhash 0.8. Automatically generates per-site passwords if you prefix your password with @@",
   "content_scripts": [
