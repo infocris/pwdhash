@@ -2,7 +2,7 @@
   * File : pwdhash-chrome-port.js
   * Author : Christophe Liou Kee On
   * Created on : 01/09/2009
-  
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -15,7 +15,7 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-    
+
 *
 */
 
@@ -39,7 +39,7 @@ var PasswordInputListener = (function () {
 			};
 		})('[pwdhash-chrome-port.js]');
 	}
-	
+
 	const VK_F2 = 113;
 	const VK_TAB = 9;
 	const VK_RETURN = 13;
@@ -61,7 +61,7 @@ var PasswordInputListener = (function () {
 		var index;
 		//~ var inputExt = $('<div></div>');
 		var self = this;
-		
+
 		var evlistener = {
 			keypress: function(e) {
 				if (e.keyCode == VK_RETURN) {
@@ -96,7 +96,7 @@ var PasswordInputListener = (function () {
 			},
 			handleEvent: function(e) {
 				//dconsole.log('event: ' + e.type + ', pwdhash_enabled: ' + pwdhash_enabled);
-				
+
 				if (this[e.type] != undefined) this[e.type](e);
 			},
 			pwdblur: function() {
@@ -120,7 +120,7 @@ var PasswordInputListener = (function () {
 				}
 			},
 		};
-		
+
 		var methods = {
 			initialize: function () {
 				for (var k in registered) {
@@ -132,10 +132,10 @@ var PasswordInputListener = (function () {
 					return;
 				}
 				field.pwdHashListener = this;
-				
+
 				index = registered.length;
 				registered.push(this);
-				
+
 				dconsole.log('PwdHash ADD Listeners (count: ' + registered.length + ')');
 				field.addEventListener('keydown', evlistener, true);
 				field.addEventListener('change', evlistener, true);
@@ -143,18 +143,18 @@ var PasswordInputListener = (function () {
 				field.addEventListener('blur', evlistener, true);
 				field.addEventListener('keyup', evlistener, true);
 				field.addEventListener('keypress', evlistener, true);
-				
+
 				if (typeof Settings != 'undefined') {
 					this.settings = new Settings.Remote('GlobalSettings');
 				}
-				
+
 				if (typeof(KeyHooker) == 'undefined') {
 					this.keyhooker = new NullKeyHooker(field);
-					
+
 				} else {
 					var _this = this;
 					this.keyhooker = new KeyHooker(field);
-					
+
 					if (typeof this.settings != 'undefined') {
 						this.settings.retrieve('noIntercept', function (value) {
 							if (value) {
@@ -164,10 +164,10 @@ var PasswordInputListener = (function () {
 					}
 				}
 			},
-			
+
 			destroy: function () {
 				dconsole.log('PwdHash REMOVE Listeners (count: ' + registered.length + ')');
-				
+
 				field.removeEventListener('keydown', evlistener, true);
 				field.removeEventListener('change', evlistener, true);
 				field.removeEventListener('focus', evlistener, true);
@@ -184,36 +184,36 @@ var PasswordInputListener = (function () {
 			isEnabled: function () {
 				return pwdhash_enabled;
 			},
-			
+
 			togglePasswordStatus: function (force) {
 				pwdhash_enabled = (force != undefined ? force : !pwdhash_enabled);
 				field.value = '';
-				
+
 				if (pwdhash_enabled) {
 					dconsole.log('PwdHash turn on');
 					field.style.backgroundColor = '#ff0';
 					this.keyhooker.intercept();
-					chrome.runtime.sendMessage({controller: 'Background_HTML', action: 'setPwdHashIconOn'});
-					
+					browser.runtime.sendMessage({controller: 'Background_HTML', action: 'setPwdHashIconOn'});
+
 				} else {
 					dconsole.log('PwdHash turn off');
 					field.style.backgroundColor = '#fff';
 					this.keyhooker.unIntercept();
-					chrome.runtime.sendMessage({controller: 'Background_HTML', action: 'setPwdHashIconOff'});
+					browser.runtime.sendMessage({controller: 'Background_HTML', action: 'setPwdHashIconOff'});
 				}
 			},
-			
+
 			submitPassword: function () {
 				var password = this.keyhooker.getValue();
-				
+
 				if (pwdhash_enabled && !pwdhashed) {
 					pwdhashed = true;
 					domain = this.getDomain();
 					var hashed = (new SPH_HashedPassword(password, domain));
 					last_password = password;
-					
+
 					this.keyhooker.setHashedPassword(hashed);
-					
+
 					if (typeof this.settings != 'undefined') {
 						this.settings.retrieve('alertPwd', function (value) {
 							if (value) {
@@ -223,7 +223,7 @@ var PasswordInputListener = (function () {
 					}
 				}
 			},
-			
+
 			getDomain: function () {
 				if (alternativeDomain != undefined) {
 					return alternativeDomain.getDomain();
@@ -232,11 +232,11 @@ var PasswordInputListener = (function () {
 				}
 			},
 		}
-		
+
 		for (var k in methods) {
 			this[k] = methods[k];
 		}
-		
+
 		if (this.initialize != undefined) this.initialize();
 	}
 	var xPathExpression = document.createExpression('//input[translate(@type, "ADOPRSW","adoprsw")="password"]',null);
@@ -279,11 +279,11 @@ var PasswordInputListener = (function () {
 		},
 	};
 	for (var k in classMethods) { Self[k] = classMethods[k]; }
-	
+
 	if (typeof(AlternativeDomain) != 'undefined') {
 		alternativeDomain = new AlternativeDomain(function () { return Self.getDomain(); });
 	}
-	
+
 	// Auto-detect password inputs
 	document.addEventListener('keydown', function (e) {
 		if (e.keyCode == SPH_kPasswordKey2) {
@@ -311,26 +311,26 @@ var PasswordInputListener = (function () {
 			}
 		}
 	});
-	
-	chrome.runtime.sendMessage({controller: 'Background_HTML', action: 'setPwdHashIconOff'});
+
+	browser.runtime.sendMessage({controller: 'Background_HTML', action: 'setPwdHashIconOff'});
 	window.addEventListener('focus', function() {
 		if (registered.length != 0 && registered[0].isEnabled()) {
-			chrome.runtime.sendMessage({controller: 'Background_HTML', action: 'setPwdHashIconOn'});
+			browser.runtime.sendMessage({controller: 'Background_HTML', action: 'setPwdHashIconOn'});
 		} else {
-			chrome.runtime.sendMessage({controller: 'Background_HTML', action: 'setPwdHashIconOff'});
+			browser.runtime.sendMessage({controller: 'Background_HTML', action: 'setPwdHashIconOff'});
 		}
 	});
-	
+
 	var discoverPasswordFields = function(event) {
 // 		Self.searchInputs(event);
 // 		if (Self.existsInputs(event)) {
  		if (Self.searchInputs(event)) {
- 			chrome.runtime.sendMessage({controller: 'Background_HTML', action: 'showPwdHashIcon'});
+ 			browser.runtime.sendMessage({controller: 'Background_HTML', action: 'showPwdHashIcon'});
  		}
 	};
-	
+
 	window.addEventListener('load', discoverPasswordFields);
 	document.addEventListener('DOMNodeInserted', discoverPasswordFields);
-	
+
 	return Self;
 }) ();
