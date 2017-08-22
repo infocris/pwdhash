@@ -6,8 +6,6 @@ if (settings.retrieve('hideIcon')) {
 	browser.pageAction.hide();
 }
 
-var iconActionType = 'pageAction';
-
 browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 	if (request.controller != 'Background_HTML') return;
 	try {
@@ -17,6 +15,10 @@ browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 					browser.pageAction.setIcon({
 						tabId: sender.tab.id,
 						path: "images/icon19on.png"
+					});
+					browser.pageAction.setTitle({
+					    tabId: sender.tab.id,
+					    title: "Pwdhash is active"
 					});
 				//});
 			}
@@ -28,6 +30,10 @@ browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 					browser.pageAction.setIcon({
 						tabId: sender.tab.id,
 						path: "images/icon19off.png"
+					});
+					browser.pageAction.setTitle({
+					    tabId: sender.tab.id,
+					    title: "Pwdhash is not active"
 					});
 				//});
 			}

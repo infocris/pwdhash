@@ -31,7 +31,6 @@
   "permissions": ["tabs"],
   "page_action": {
     "default_icon": "images/icon19off.png",
-    "default_title": "PwdHash",
-    "default_popup": "popup.html"
+    "default_title": "PwdHash"
   }
 }
