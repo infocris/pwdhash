@@ -1,36 +1,33 @@
 <html>
 <head>
+	<meta charset="utf-8">
 	<title>PwdHash Extension Options</title>
 	<link rel="stylesheet" type="text/css" href="options.css"/>
-	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="null.js"></script>
 	<script type="text/javascript" src="Settings.js"></script>
 	<script type="text/javascript" src="options.js"></script>
 </head>
 <body>
 
-<img src="images/icon128.png" />
-<h1>PwdHash Chrome Extension</h1>
+<form>
+	<div>
+		<input type="checkbox" id="hideIcon" class="setting" />
+		<label for="hideIcon">Hide icon in browser url bar</label>
+	</div>
 
-<!--
-<script type="text/javascript" src="jquery.js"></script>
--->
+	<div>
+		<input type="checkbox" id="alertPwd" class="setting" />
+		<label for="alertPwd">Prompt a dialog box containing password and its hash</label>
+	</div>
 
-<p><input type="checkbox" id="hideIcon" class="setting" />
-	<label for="hideIcon">Hide icon in Chrome's page action toolbar</label></p>
+	<div>
+		<input type="checkbox" id="noIntercept" class="setting" />
+		<label for="noIntercept">Disable keyboard security (Prevent website from catching your master password by intercept keyboard events) </label>
+	</div>
 
-<p><input type="checkbox" id="alertPwd" class="setting" />
-	<label for="alertPwd">Prompt password and hashed</label>
-</p>
-<p>
-	Prompt a dialog box containing password and its hashed.
-</p>
+</form>
 
-<p><input type="checkbox" id="noIntercept" class="setting" />
-	<label for="noIntercept">Disable keyboard security</label></p>
-<p>
-	Prevent website from catching your master password by intercept keyboard events.
-</p>
 <!--
 	<br /><a href="http://infocris.nuxit.net/pwdhash/test_keyboard.html">Test keyboard interception shield</a>
 -->

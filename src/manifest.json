@@ -1,6 +1,6 @@
 {
   "name": "PwdHash",
-  "version": "0.4.3.9",
+  "version": "0.4.4",
   "manifest_version": 2,
   "description": "Pwdhash 0.8. Automatically generates per-site passwords if you prefix your password with @@",
   "content_scripts": [
@@ -22,7 +22,10 @@
       ]
     }
   ],
-  "options_page": "options.html",
+  "options_ui": {
+      "page": "options.html",
+      "browser_style": true
+  },
   "background": {
       "scripts": ["null.js", "Settings.js", "background.js"]
   },

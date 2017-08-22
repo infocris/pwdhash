@@ -9,14 +9,14 @@ var $P = function (id) {
 		this.val = function (a1) {
 			if (a1 == undefined) {
 				if (e.type == 'checkbox')
-					return e.checked; 
-					else return e.value; 
+					return e.checked;
+					else return e.value;
 			}
 			if (e.type == 'checkbox') {
 				e.checked = a1;
 			}
 				else e.value = a1;
-			
+
 			return o;
 		};
 	})(document.getElementById(id));
