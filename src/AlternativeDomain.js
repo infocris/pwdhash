@@ -2,9 +2,9 @@
   * File : AlternativeDomain.js
   * Author : Christophe Liou Kee On
   * Created on : 06/02/2010
-  
+
     License :
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -17,9 +17,9 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-    
+
     Description :
-    
+
     AlternativeDomain allow to use an alternative domain as salt.
     It can be set by the pwdhash button in Google Toolbar.
 *
@@ -32,10 +32,10 @@
 
 var AlternativeDomain = (function () {
 	var console = NullConsole;
-	
+
 	var Self = function (get_default) {
 		var self = this;
-		
+
 		this.setDomain = function (value) {
 			var domain = get_default();
 			var domains = {};
@@ -69,14 +69,14 @@ var AlternativeDomain = (function () {
 			}
 			return domain;
 		};
-		
-		chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+
+		browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 			if (request.controller != 'AlternativeDomain') return;
-			
+
 			try {
 				if (request.action == "getDomain") {
 					sendResponse({domain: self.getDomain(), defaultDomain: get_default()});
-					
+
 				} else if (request.action == "setDomain") {
 					self.setDomain(request.domain);
 					sendResponse({ok: true});
@@ -86,6 +86,6 @@ var AlternativeDomain = (function () {
 			}
 		});
 	};
-	
+
 	return Self;
 }) ();

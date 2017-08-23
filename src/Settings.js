@@ -2,9 +2,9 @@
   * File : Settings.js
   * Author : Christophe Liou Kee On
   * Created on : 06/02/2010
-  
+
     License :
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -17,7 +17,7 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-    
+
     Description :
 *
 */
@@ -25,7 +25,7 @@
 
 var Settings = (function () {
 	var console = NullConsole;
-	
+
 	var Self = function () {
 		this.store = function (k, v) {
 			console.log(k + ' <- ' + v);
@@ -37,17 +37,17 @@ var Settings = (function () {
 				return (JSON.parse(v));
 			return null;
 		};
-		
+
 		var self = this;
-		
+
 		this.listen = function (channel) {
-			chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+			browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 				if (request.controller != channel) return;
-				
+
 				try {
 					if (request.action == "retrieve") {
 						sendResponse({ok: true, value: self.retrieve(request.key)});
-						
+
 					} else if (request.action == "store") {
 						self.store(request.key, request.value);
 						sendResponse({ok: true});
@@ -59,10 +59,10 @@ var Settings = (function () {
 			});
 		};
 	}
-	
+
 	Self.Remote = function (channel) {
 		this.retrieve = function (k, fn) {
-			chrome.runtime.sendMessage({
+			browser.runtime.sendMessage({
 				controller: channel,
 				action: 'retrieve',
 				key: k
@@ -71,7 +71,7 @@ var Settings = (function () {
 			});
 		}
 		this.store = function (k, val, fn) {
-			chrome.runtime.sendMessage({
+			browser.runtime.sendMessage({
 				controller: channel,
 				action: 'store',
 				key: k,
@@ -81,6 +81,6 @@ var Settings = (function () {
 			});
 		}
 	}
-	
+
 	return Self;
 }) ();
