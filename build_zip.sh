@@ -15,12 +15,11 @@ cat manifest.json \
 > .manifest.json
 mv .manifest.json manifest.json
 
-ZIPFILE="../dist/chrome-pwdhash-$(hg branch).zip"
+ZIPFILE="../dist/chrome-pwdhash-$(git rev-parse --abbrev-ref HEAD).zip"
 [ -e "$ZIPFILE" ] && rm "$ZIPFILE"
 zip -q -r "$ZIPFILE" .
 
-hg revert manifest.json
-rm manifest.json.orig
+git checkout HEAD manifest.json
 
 cd ../
 
