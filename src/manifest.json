@@ -1,6 +1,6 @@
 {
   "name": "PwdHash port",
-  "version": "1.0.0.2",
+  "version": "1.0.0.3",
   "manifest_version": 2,
   "description": "Pwdhash 1.7 for Chrome. Automatically generates per-site passwords if you prefix your password with @@ or F2.",
   "content_scripts": [
@@ -30,7 +30,6 @@
     "48": "images/icon48-stable.png",
     "128": "images/icon128-stable.png"
   },
-  "permissions": ["tabs"],
   "page_action": {
     "default_icon": "images/icon19off.png",
     "default_title": "PwdHash",
